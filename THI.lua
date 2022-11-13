@@ -51,35 +51,6 @@ end)
 
 local e = Window:NewTab("Info")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function hatchEgg()
 	spawn(function()
 		while autoHatch == true do
@@ -132,20 +103,3 @@ function teleportWorld(world)
 		teleportTO(game:GetService("Workspace").AreaItems["Main Island"].Travel.CFrame)
 	end
 end
-
-teleportWorld()
-spinwheel()
-smeltore()
-hatchegg()
-
-
-
-
-
-
-
-
-
-
-
-
