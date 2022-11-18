@@ -157,5 +157,4 @@ end
 
 
 
-hatchEgg(eggType)
-game:GetService("ReplicatedStorage").Models.Eggs:FindFirstChild(eggType)
+
