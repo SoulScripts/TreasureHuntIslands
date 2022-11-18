@@ -1,7 +1,9 @@
 getgenv().autoHatch = false;
+getgenv().tripleHatch = false;
 getgenv().autoSmelt = false;
 getgenv().autoSpin = false;
-getgenv().thisvalue = 'my name';
+
+
 
 
 local remotePath = game:GetService("ReplicatedStorage").Events;
@@ -23,15 +25,50 @@ Sect:NewLabel("dm for questions maybe idk")
 
 local b = Window:NewTab("Eggs")
 local Section = b:NewSection("Auto Hatch")
-				Section:NewToggle("Auto Hatch", "qweqew", function(state)
-					getgenv().autoHatch = state 
-						print("hi");						
+				Section:NewToggle("Auto Hatch", "read the name", function(state)
+					getgenv().autoHatch = state 					
 			if state then		
 		hatchEgg();	
 	end
 end)
 
+Section:NewToggle("Triple Hatch Egg", "dont ask me what this does", function(state)
+	getgenv().tripleHatch = state 						
+		if state then		
+		triplehatchEgg();	
+	end
+end)
 
+
+local selectedEgg;
+local oldList = {
+    "PRESS UPDATE"
+  }
+  local newList = {
+    "Moonlight Egg",
+    "Stranded Egg",
+	"Spikey Egg",
+	"Jungle Egg",
+	"Exotic Egg",
+	"Snowy Egg",
+	"Glacier Egg",
+	"Uncommon Egg",
+	"Basic Egg",
+	"Buried Treasure Egg",
+	"Pirate Egg"
+  }
+  local dropdown = Section:NewDropdown("Dropdown","Info", oldList, function(value)
+	selectedEgg = value;
+	print(value)
+  end
+  
+  end)
+  Section:NewButton("Update Dropdown", "Refreshes Dropdown", function(value)
+    dropdown:Refresh(newList)
+
+  selectedEgg = value;
+  print(value)
+end)
 
 
 
@@ -54,7 +91,17 @@ local e = Window:NewTab("Info")
 function hatchEgg()
 	spawn(function()
 		while autoHatch == true do
-			local args = {[1] = "Pirate Egg", [2] = 1}
+			local args = {[1] = selectedEgg, [2] = 1}
+			remotePath.RequestEggHatch:FireServer(unpack(args))
+			wait(1)
+		end
+	end)
+end
+
+function triplehatchEgg()
+	spawn(function()
+		while tripleHatch == true do
+			local args = {[1] = selectedEgg, [2] = 3}
 			remotePath.RequestEggHatch:FireServer(unpack(args))
 			wait(1)
 		end
@@ -103,3 +150,12 @@ function teleportWorld(world)
 		teleportTO(game:GetService("Workspace").AreaItems["Main Island"].Travel.CFrame)
 	end
 end
+
+
+
+
+
+
+
+hatchEgg(eggType)
+game:GetService("ReplicatedStorage").Models.Eggs:FindFirstChild(eggType)
