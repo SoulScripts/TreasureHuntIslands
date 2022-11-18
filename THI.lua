@@ -60,15 +60,44 @@ local oldList = {
   local dropdown = Section:NewDropdown("Dropdown","Info", oldList, function(value)
 	selectedEgg = value;
 	print(value)
-  end
-  
   end)
   Section:NewButton("Update Dropdown", "Refreshes Dropdown", function(value)
     dropdown:Refresh(newList)
+  	selectedEgg = value;
+	print(value)
+  end)
 
-  selectedEgg = value;
-  print(value)
-end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,6 +116,35 @@ local Section = d:NewSection("Auto Spin")
 end)
 
 local e = Window:NewTab("Info")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function hatchEgg()
 	spawn(function()
@@ -157,4 +215,5 @@ end
 
 
 
-
+hatchEgg(eggType)
+game:GetService("ReplicatedStorage").Models.Eggs:FindFirstChild(eggType)
