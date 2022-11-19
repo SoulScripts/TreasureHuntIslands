@@ -55,7 +55,10 @@ local oldList = {
 	"Uncommon Egg",
 	"Basic Egg",
 	"Buried Treasure Egg",
-	"Pirate Egg"
+	"Pirate Egg",
+	"Magma Egg",
+	"Obsidian Egg"
+
   }
   local dropdown = Section:NewDropdown("Dropdown","Info", oldList, function(value)
 	selectedEgg = value;
